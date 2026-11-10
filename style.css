@@ -428,38 +428,68 @@ img {
    7. THERAPISTS
 ======================================== */
 
+./* ========================================
+   7. THERAPISTS
+======================================== */
+
 .therapists {
     background-color: var(--navy);
 }
 
 .therapist-grid {
-    width: min(1000px, 100%);
+    width: min(1100px, 100%);
     margin: 0 auto;
 
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 28px;
+    align-items: stretch;
 }
 
 .therapist-card {
     display: grid;
-    grid-template-columns: 140px minmax(0, 1fr);
+    grid-template-columns: 200px minmax(0, 1fr);
     gap: 25px;
 
+    height: 100%;
     padding: 25px;
 
     background-color: var(--navy-light);
     border: 1px solid var(--border);
     border-radius: 6px;
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease;
 }
 
+.therapist-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(217, 165, 108, 0.45);
+}
+
+/* Photo */
 .therapist-image {
-    min-height: 180px;
+    position: relative;
+    min-height: 260px;
+    overflow: hidden;
 
     background-color: var(--blue-grey);
     border-radius: 4px;
 }
 
+.therapist-image img {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center center;
+}
+
+/* Text */
 .therapist-info h3 {
     margin-bottom: 5px;
 
@@ -484,6 +514,76 @@ img {
     line-height: 1.8;
 }
 
+/* Tags (languages, online/in person, age group) */
+.therapist-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    margin: 0 0 16px;
+    list-style: none;
+}
+
+.therapist-tags li {
+    padding: 3px 12px;
+
+    color: var(--muted-text);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+/* "Read more" dropdown */
+.therapist-more summary {
+    display: inline-block;
+    cursor: pointer;
+    list-style: none;
+
+    color: var(--amber);
+    font-size: 13px;
+    font-weight: 600;
+
+    transition: color 0.3s ease;
+}
+
+.therapist-more summary::-webkit-details-marker {
+    display: none;
+}
+
+.therapist-more summary::after {
+    content: " +";
+}
+
+.therapist-more[open] summary::after {
+    content: " \2013";
+}
+
+.therapist-more summary:hover {
+    color: var(--amber-hover);
+}
+
+.therapist-more summary:focus-visible {
+    outline: 2px solid var(--amber);
+    outline-offset: 4px;
+}
+
+.therapist-more p {
+    margin: 14px 0 18px;
+
+    color: var(--muted-text);
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.therapist-more .button {
+    min-height: 42px;
+    padding: 9px 20px;
+    font-size: 13px;
+}
+
+/* Note under the grid */
 .therapist-note {
     max-width: 760px;
     margin: 35px auto 0;
@@ -492,8 +592,6 @@ img {
     font-size: 13px;
     text-align: center;
 }
-
-
 /* ========================================
    8. FREQUENTLY ASKED QUESTIONS
 ======================================== */
@@ -528,6 +626,84 @@ img {
     color: var(--muted-text);
     font-size: 14px;
     line-height: 1.9;
+}
+
+
+/* ========================================
+   8B. URGENT HELP
+======================================== */
+
+.urgent-help {
+    background-color: var(--navy-light);
+}
+
+.urgent-grid {
+    width: min(1000px, 100%);
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.urgent-card {
+    padding: 26px;
+
+    background-color: rgba(38, 52, 71, 0.45);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+}
+
+.urgent-card-primary {
+    grid-column: 1 / -1;
+    text-align: center;
+    border-color: rgba(217, 165, 108, 0.6);
+}
+
+.urgent-card h3 {
+    margin-bottom: 8px;
+    color: var(--ivory);
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.urgent-number {
+    margin-bottom: 8px;
+    color: var(--amber);
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.urgent-number a:hover {
+    color: var(--amber-hover);
+}
+
+.urgent-detail {
+    color: var(--muted-text);
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.urgent-detail a {
+    color: var(--ivory);
+    text-decoration: underline;
+}
+
+.urgent-note {
+    max-width: 760px;
+    margin: 30px auto 0;
+
+    color: var(--muted-text);
+    font-size: 13px;
+    line-height: 1.8;
+    text-align: center;
+}
+
+@media (max-width: 700px) {
+    .urgent-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 
@@ -715,7 +891,7 @@ a:focus-visible {
         font-size: 12px;
     }
 
-    .hero {
+    .interaction {
         min-height: 650px;
         min-height: 85svh;
 
@@ -734,21 +910,21 @@ a:focus-visible {
                 rgba(16, 26, 42, 0.65),
                 transparent 50%
             ),
-            url("images/salem-background.png");
+            url("2.jpg.png");
     }
 
-    .hero h1 {
+    .interaction h1 {
         font-size: clamp(38px, 9vw, 54px);
         letter-spacing: -0.8px;
     }
 
-    .hero-description {
+    .interaction-description {
         max-width: 480px;
         font-size: 14px;
         line-height: 1.9;
     }
 
-    .hero-actions {
+    .interaction-actions {
         align-items: stretch;
         flex-direction: column;
         max-width: 300px;
@@ -797,10 +973,15 @@ a:focus-visible {
     .therapist-card {
         grid-template-columns: 1fr;
         gap: 20px;
+        padding: 20px;
     }
 
     .therapist-image {
-        min-height: 220px;
+        min-height: 260px;
+    }
+
+    .therapist-more .button {
+        width: 100%;
     }
 
     .footer-links {
@@ -829,11 +1010,11 @@ a:focus-visible {
         gap: 12px 16px;
     }
 
-    .hero h1 {
+    .interaction h1 {
         font-size: 36px;
     }
 
-    .hero-actions {
+    .interaction-actions {
         max-width: 100%;
     }
 
